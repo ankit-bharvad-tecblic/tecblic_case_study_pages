@@ -39,11 +39,9 @@ export default function CreatePage({ initialPage }) {
     // Fetch page data if in edit mode
     useEffect(() => {
         if (edit) {
-            console.log("edit --> ", edit)
             fetch(`/api/admin/pages/${edit}`)
                 .then(res => res.json())
                 .then(data => {
-                    console.log("data --> ", data)
                     setForm({
                         pageTitle: data.pageTitle || '',
                         slug: data.slug || '',
@@ -69,11 +67,11 @@ export default function CreatePage({ initialPage }) {
         setForm({ ...form, cards: updatedCards });
     };
 
-    const handleRemoveCard = (index) => {
-        const updatedCards = [...form.cards];
-        updatedCards.splice(index, 1);
-        setForm({ ...form, cards: updatedCards });
-    };
+    // const handleRemoveCard = (index) => {
+    //     const updatedCards = [...form.cards];
+    //     updatedCards.splice(index, 1);
+    //     setForm({ ...form, cards: updatedCards });
+    // };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -189,7 +187,6 @@ export default function CreatePage({ initialPage }) {
                     <div className='cards-grid'>
 
                         {form.cards.map((card, index) => (
-                            // <div key={index} className="border p-4 rounded-lg mb-4 space-y-2">
                             <div className="card-content">
                                 <input
                                     type="text"
@@ -206,7 +203,6 @@ export default function CreatePage({ initialPage }) {
                                     placeholder="Card Description"
                                     className="card-input"
                                     onChange={(e) => handleCardChange(e, index)}
-
                                 />
 
                                 <input
@@ -218,7 +214,6 @@ export default function CreatePage({ initialPage }) {
                                     onChange={(e) => handleCardChange(e, index)}
                                 />
                             </div>
-                            // </div>
                         ))}
                     </div>
                 </div>
