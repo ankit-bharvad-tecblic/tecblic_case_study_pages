@@ -1,0 +1,79 @@
+/* Navbar Base */
+.navbar {
+    background-color: #000;
+    color: #fff;
+    padding: 0.5rem 1rem;
+  }
+  
+  .navbar-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 60px;
+  }
+  
+  .logo a {
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: white;
+    text-decoration: none;
+  }
+  
+  /* Navigation Links */
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+  }
+  
+  .nav-links a {
+    color: white;
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+  
+  .nav-links a:hover {
+    text-decoration: underline;
+  }
+  
+  /* Contact Button */
+  .contact-btn {
+    border: 1px solid white;
+    padding: 6px 16px;
+    border-radius: 9999px;
+    transition: all 0.3s ease;
+  }
+  
+  .contact-btn:hover {
+    background-color: white;
+    color: black;
+  }
+  
+  /* Mobile Menu Icon */
+  .menu-icon {
+    display: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+  }
+  
+  /* Mobile Styles */
+  @media screen and (max-width: 768px) {
+    .nav-links {
+      display: none;
+      flex-direction: column;
+      padding: 1rem 0;
+      background-color: #000;
+    }
+  
+    .nav-links.open {
+      display: flex;
+    }
+  
+    .menu-icon {
+      display: block;
+      color: white;
+    }
+  }
+  

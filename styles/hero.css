@@ -1,0 +1,60 @@
+.hero-section {
+    background-image: url('../public/images/banner.webp'); /* Replace with actual image path */
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    /* padding: 10px 10px; */
+    color: #fff;
+    min-height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+  
+  .hero-overlay {
+    max-width: 1000px;
+    margin: auto;
+    padding: 20px;
+  }
+  
+  .hero-title {
+    font-size: 64px;
+    font-weight: 500; /* Medium */
+    margin-bottom: 20px;
+  }
+  
+  .hero-description {
+    font-size: 24px;
+    font-weight: 400; /* Regular */
+    line-height: 1.6;
+  }
+  
+  /* Responsive Styles */
+  @media screen and (max-width: 1024px) {
+    .hero-title {
+      font-size: 48px;
+    }
+    .hero-description {
+      font-size: 20px;
+    }
+  }
+  
+  @media screen and (max-width: 768px) {
+    .hero-title {
+      font-size: 36px;
+    }
+    .hero-description {
+      font-size: 18px;
+    }
+  }
+  
+  @media screen and (max-width: 480px) {
+    .hero-title {
+      font-size: 28px;
+    }
+    .hero-description {
+      font-size: 16px;
+    }
+  }
+  

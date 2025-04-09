@@ -1,0 +1,77 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --max-width: 960px;
+  --side-padding: 20px;
+
+  --font-title: 42px;
+  --font-section-heading: 36px;
+  --font-body: 20px;
+  --font-subsection: 28px;
+  --font-small: 16px;
+
+  --line-gap-xl: 60px;
+  --line-gap-md: 36px;
+  --line-gap-sm: 24px;
+
+  --color-bg: #fff;
+  --color-text: #000;
+  --color-highlight: #e91e63;
+}
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+h1,h2 {
+  font-size: var(--font-title);
+  font-size: 42px;
+}
+
+h3 {
+  font-size: var(--font-section-heading);
+  font-size: 36px;
+}
+
+p {
+  font-size: var(--font-body);
+  font-size: 20px;
+}
+
+
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.editor {
+  display: flex;
+  width: 100%;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+}
+
+.input-field {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+
+.content-container {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 50px 0px;
+}
