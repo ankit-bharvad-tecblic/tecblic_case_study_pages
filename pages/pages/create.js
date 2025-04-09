@@ -1,6 +1,3 @@
-
-
-
 import { useEffect, useState } from 'react';
 import dynamic from 'next/dynamic';
 import { useRouter } from 'next/router';
@@ -31,7 +28,12 @@ export default function CreatePage({ initialPage }) {
         bannerTitle: initialPage?.bannerTitle ?? '',
         bannerDescription: initialPage?.bannerDescription ?? '',
         content: initialPage?.content ?? '',
-        cards: initialPage?.cards ?? [{ title: '', description: '', link: '' }]
+        cards: initialPage?.cards ?? [
+            { title: '', description: '', link: '' },
+            { title: '', description: '', link: '' },
+            { title: '', description: '', link: '' },
+            { title: '', description: '', link: '' }
+        ]
     });
 
     // Fetch page data if in edit mode
@@ -89,54 +91,78 @@ export default function CreatePage({ initialPage }) {
     };
 
     return (
-        <div className="max-w-3xl mx-auto p-6">
-            <h1 className="text-2xl font-semibold mb-6">
+        <div className="form-container">
+            <h2 className="form-title">
                 {edit ? 'Edit Page' : 'Create Page'}
-            </h1>
-            <form onSubmit={handleSubmit} className="space-y-4">
-                <input
-                    type="text"
-                    name="pageTitle"
-                    value={form.pageTitle}
-                    placeholder="Page Title"
-                    className="w-full border p-2"
-                    onChange={handleChange}
-                />
-                <input
-                    type="text"
-                    name="slug"
-                    value={form.slug}
-                    placeholder="Slug (e.g. canva8-ai)"
-                    className="w-full border p-2"
-                    onChange={handleChange}
-                />
-                <input
-                    type="text"
-                    name="bannerImage"
-                    value={form.bannerImage}
-                    placeholder="Banner Image URL"
-                    className="w-full border p-2"
-                    onChange={handleChange}
-                />
-                <input
-                    type="text"
-                    name="bannerTitle"
-                    value={form.bannerTitle}
-                    placeholder="Banner Title"
-                    className="w-full border p-2"
-                    onChange={handleChange}
-                />
-                <textarea
-                    name="bannerDescription"
-                    value={form.bannerDescription}
-                    onChange={handleChange}
-                    placeholder="Banner Description"
-                    className="w-full border p-2"
-                    rows="3"
-                    required
-                />
+            </h2>
+            <form onSubmit={handleSubmit}>
+                <div className="form-group">
+                    <label htmlFor="pageTitle" className="form-label">Page Title</label>
+                    <input
+                        type="text"
+                        id="pageTitle"
+                        name="pageTitle"
+                        value={form.pageTitle}
+                        placeholder="Enter page title"
+                        className="form-input"
+                        onChange={handleChange}
+                    />
+                </div>
+
+                <div className="form-group">
+                    <label htmlFor="slug" className="form-label">Page Slug</label>
+                    <input
+                        type="text"
+                        id="slug"
+                        name="slug"
+                        value={form.slug}
+                        placeholder="e.g. canva8-ai"
+                        className="form-input"
+                        onChange={handleChange}
+                    />
+                </div>
+
+                <div className="form-group">
+                    <label htmlFor="bannerImage" className="form-label">Banner Image URL</label>
+                    <input
+                        type="text"
+                        id="bannerImage"
+                        name="bannerImage"
+                        value={form.bannerImage}
+                        placeholder="Enter banner image URL"
+                        className="form-input"
+                        onChange={handleChange}
+                    />
+                </div>
+
+                <div className="form-group">
+                    <label htmlFor="bannerTitle" className="form-label">Banner Title</label>
+                    <input
+                        type="text"
+                        id="bannerTitle"
+                        name="bannerTitle"
+                        value={form.bannerTitle}
+                        placeholder="Enter banner title"
+                        className="form-input"
+                        onChange={handleChange}
+                    />
+                </div>
+
+                <div className="form-group">
+                    <label htmlFor="bannerDescription" className="form-label">Banner Description</label>
+                    <textarea
+                        id="bannerDescription"
+                        name="bannerDescription"
+                        value={form.bannerDescription}
+                        onChange={handleChange}
+                        placeholder="Enter banner description"
+                        className="form-textarea"
+                        required
+                    />
+                </div>
+
                 <div>
-                    <h6 className="text-xl font-semibold mb-4">Content</h6>
+                    <h2 className="form-title">Content</h2>
                     <EditorCustom
                         form={form}
                         config={{ language: "en" }}
@@ -146,8 +172,8 @@ export default function CreatePage({ initialPage }) {
                     />
                 </div>
                 <div>
-                    <h2 className="text-xl font-semibold mb-4">Cards</h2>
-                    <button
+                    <h2 className="form-title">Cards</h2>
+                    {/* <button
                         type="button"
                         className="bg-blue-500 text-white px-4 py-2 rounded mb-4"
                         onClick={() =>
@@ -158,58 +184,59 @@ export default function CreatePage({ initialPage }) {
                         }
                     >
                         Add Card
-                    </button>
+                    </button> */}
 
-                    {form.cards.map((card, index) => (
-                        <div key={index} className="border p-4 rounded-lg mb-4 space-y-2">
-                            <input
-                                type="text"
-                                name="title"
-                                value={card.title}
-                                placeholder="Card Title"
-                                className="w-full border p-2"
-                                onChange={(e) => handleCardChange(e, index)}
-                            />
-                            <input
-                                type="text"
-                                name="description"
-                                value={card.description}
-                                placeholder="Card Description"
-                                className="w-full border p-2"
-                                onChange={(e) => handleCardChange(e, index)}
-                            />
-                            <input
-                                type="text"
-                                name="link"
-                                value={card.link}
-                                placeholder="Link"
-                                className="w-full border p-2"
-                                onChange={(e) => handleCardChange(e, index)}
-                            />
-                            <button
-                                type="button"
-                                className="bg-red-500 text-white px-4 py-2 rounded"
-                                onClick={() => handleRemoveCard(index)}
-                            >
-                                Remove Card
-                            </button>
-                        </div>
-                    ))}
+                    <div className='cards-grid'>
+
+                        {form.cards.map((card, index) => (
+                            // <div key={index} className="border p-4 rounded-lg mb-4 space-y-2">
+                            <div className="card-content">
+                                <input
+                                    type="text"
+                                    name="title"
+                                    value={card.title}
+                                    placeholder="Card Title"
+                                    className="card-input"
+                                    onChange={(e) => handleCardChange(e, index)}
+                                />
+                                <textarea
+                                    type="text"
+                                    name="description"
+                                    value={card.description}
+                                    placeholder="Card Description"
+                                    className="card-input"
+                                    onChange={(e) => handleCardChange(e, index)}
+
+                                />
+
+                                <input
+                                    type="text"
+                                    name="link"
+                                    value={card.link}
+                                    placeholder="Link"
+                                    className="card-input"
+                                    onChange={(e) => handleCardChange(e, index)}
+                                />
+                            </div>
+                            // </div>
+                        ))}
+                    </div>
                 </div>
 
-                <button
-                    type="submit"
-                    className="bg-blue-600 text-white px-4 py-2 rounded"
-                >
-                    {edit ? 'Update Page' : 'Create Page'}
-                </button>
+                <div className='btn-con'>
+                    <button
+                        type="submit"
+                        className="submit-button"
+                    >
+                        {edit ? 'Update Page' : 'Create Page'}
+                    </button>
+                </div>
+
+
             </form>
         </div>
     );
 }
-
-
-
 
 export async function getServerSideProps(context) {
     await connectToDatabase();

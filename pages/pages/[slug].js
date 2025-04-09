@@ -64,13 +64,13 @@ export async function getServerSideProps(context) {
     if (!page) return { notFound: true };
 
     // ✅ Convert _id and date fields to strings
-    page._id = page?._id.toString();
+    page._id = page?._id?.toString() || null;
     page.createdAt = page.createdAt?.toISOString() || null;
     page.updatedAt = page.updatedAt?.toISOString() || null;
 
     page.cards = page.cards.map(card => ({
         ...card,
-        // _id: card?._id?.toString(),
+        _id: card?._id?.toString() || null,
         createdAt: card.createdAt?.toISOString() || null,
         updatedAt: card.updatedAt?.toISOString() || null
     }));

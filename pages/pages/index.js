@@ -4,6 +4,7 @@ import Navbar from "../../components/Navbar/Navbar";
 import Footer from "../../components/Footer";
 import Link from "next/link";
 import { useRouter } from "next/router";
+// import "../../styles/pages-list.css";
 
 export default function PagesList({ pages }) {
     const router = useRouter();
@@ -29,39 +30,42 @@ export default function PagesList({ pages }) {
     return (
         <>
             <Navbar />
-            <div className="container mx-auto px-4 py-8">
-                <h1 className="text-3xl font-bold mb-8">All Pages</h1>
-                <Link href={`/pages/create`} className="text-blue-600 hover:underline">
-                    Create New Page
-                </Link>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="pages-container">
+                <div className="pages-header">
+                    <h1 className="pages-title">All Pages</h1>
+
+                    <button
+                        onClick={() => router.push(`/pages/create`)}
+                        className="edit-button"
+                    >
+                        Create New Page
+                    </button>
+                </div>
+                <div className="pages-grid">
                     {pages.map((page) => (
-                        <div key={page._id} className="bg-white rounded-lg shadow-md p-6">
-                            <h2 className="text-xl font-semibold mb-2">{page.pageTitle}</h2>
+                        <div key={page._id} className="page-card">
+                            <h2 className="page-title">{page.pageTitle}</h2>
                             {/* <p className="text-gray-600 mb-4">{page.bannerDescription}</p> */}
-                            <div className="flex justify-between items-center">
-                                <Link href={`/pages/${page.slug}`} className="text-blue-600 hover:underline">
+                            <div className="page-actions">
+
+                                <button
+                                    onClick={() => router.push(`/pages/${page.slug}`)}
+                                    className="edit-button view-link"
+                                >
                                     View Page
-                                </Link>
-                                <div className="flex gap-2">
+                                </button>
+                                <div className="action-buttons">
                                     <button
                                         onClick={() => router.push(`/pages/create?edit=${page._id}`)}
-                                        className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+                                        className="edit-button"
                                     >
                                         Edit
                                     </button>
-                                    {/* <button
-                                        onClick={() => handleDownload(page.slug)}
-                                        className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700"
-                                    >
-                                        Download
-                                    </button> */}
-
                                     <a
                                         href={`/api/export-html?slug=${page.slug}`}
                                         download={`${page.slug}.html`}
                                     >
-                                        <button>Download Page</button>
+                                        <button className="download-button">Download Page</button>
                                     </a>
                                 </div>
                             </div>
